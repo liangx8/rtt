@@ -3,19 +3,34 @@
         {
             "name": "CORTEX-M3",
             "includePath": [
-                "${workspaceFolder}/cortex_m3",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/cortex_m3/**",
+                "${workspaceFolder}/src/**"
             ],
             "defines": [
                 "STM32F103xB",
-                "CPUCLK=72000000"
+                "CPUCLK=72000000",
+                "__thumb2__"
             ],
             "compilerPath": "/usr/bin/arm-none-eabi-gcc",
             "cStandard": "c99",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-arm"
+        },
+        {
+            "name": "CORTEX-M0",
+            "includePath": [
+                "${workspaceFolder}/cortex_m0/**",
+                "${workspaceFolder}/src/**"
+            ],
+            "defines": [
+                "STM32F051x8",
+                "CPUCLK=48000000"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu99",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-arm"
         }
     ],
-    
     "version": 4
 }

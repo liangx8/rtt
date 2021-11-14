@@ -1,12 +1,12 @@
 .syntax unified
 .text
-.global PendSV_handler,SVCall_handler
 
-.func PendSV_handler
+/*
+.func PendSV_handler1
 .thumb_func
-.type PendSV_handler, %function
+.type PendSV_handler1, %function
 .align
-PendSV_handler:
+PendSV_handler1:
     cpsid   i
     mrs     r0,psp
     stmdb   r0!,{r4-r11}
@@ -16,9 +16,8 @@ PendSV_handler:
     cpsie   i
     bx      lr
     .align
-    .size PendSV_handler, . - PendSV_handler
+    .size PendSV_handler1, . - PendSV_handler1
     .endfunc
-
 .func SVCall_handler
 .thumb_func
 .type SVCall_handler, %function
@@ -29,7 +28,7 @@ SVCall_handler:
     mrs     r0,psp
     ldmia   r0!,{r4-r11}
     msr     psp,r0
-    /* 返回thread mode,从PSP出栈，返回后使用PSP */
+
     ldr     lr,=0xfffffffd
     cpsie   i
     bx      lr
@@ -38,3 +37,4 @@ SVCall_handler:
     .align
 
 
+*/
