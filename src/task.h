@@ -25,7 +25,7 @@ stack_t* task_stack_init(void *func,void *arguments,stack_t *stack_top);
 void rtt_init(void);
 
 #define tyield() portSCB->ICSR= (1 << 28)
-#define myield() __asm volatile ("svc 0")
+#define myield() __asm volatile ("svc #100")
 
 
 #endif

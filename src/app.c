@@ -9,11 +9,11 @@ void task1(uint32_t x)
 {
     while (1){
         int i;
-        for(i=0x60000;i !=0;i--){
+        for(i=x;i !=0;i--){
             tyield();
         }
         LED_PORT->BSRR = LED1;
-        for(i=0x6000;i !=0;i--){
+        for(i=x;i !=0;i--){
             tyield();
         }
         LED_PORT->BRR = LED1;
@@ -22,7 +22,7 @@ void task1(uint32_t x)
 
 void app_loop(void)
 {
-    stack_t *p = task_stack_init(task1, (void *)6000, &stack1[16]);
+    stack_t *p = task_stack_init(task1, (void *)0x16000, &stack1[16]);
     __asm volatile(
         "msr    psp,%0" ::"r"(p));
     rtt_init();

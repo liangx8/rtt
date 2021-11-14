@@ -1,8 +1,6 @@
 
 #include "task.h"
 #include "config.h"
-extern stack_t *current_tcb;
-extern stack_t *tcb_list;
 
 stack_t * task_stack_init(void *func,void *arguments,stack_t *top)
 {
