@@ -1,9 +1,10 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "CORTEX-M3",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/cortex_m3",
+                "${workspaceFolder}/src"
             ],
             "defines": [
                 "STM32F103xB",
@@ -15,5 +16,6 @@
             "intelliSenseMode": "linux-gcc-arm"
         }
     ],
+    
     "version": 4
 }

@@ -1,6 +1,5 @@
 
 #include "task.h"
-#include "config.h"
 
 stack_t * task_stack_init(void *func,void *arguments,stack_t *top)
 {

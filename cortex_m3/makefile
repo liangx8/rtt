@@ -13,7 +13,9 @@ OUTPUT_FORMAT=ihex
 LINKER_SCRIPTS=cmsis/stm32.ld
 
 CSOURCE=$(shell find -name \*.c -and -type f)
+CSOURCE+=$(shell ls ../src/*.c)
 ASOURCE=$(shell find -name \*.S -and -type f)
+ASOURCE+=$(shell ls ../src/*.S)
 ELF=main.elf
 HEX=main.hex
 BIN=main.bin
@@ -28,6 +30,7 @@ CPUFREQ=-DCPUCLK=72000000
 OPTC=-O2
 CFLAGS= ${PORT} ${CPUFREQ} ${OPTC} -Wall -Wa,-mimplicit-it=always -DNDEBUG -DSTM32F103xB
 CFLAGS+=-I./ -I./cmsis/include
+CFLAGS+=-I../src
 # -nostdlib会导致一些编译错误。缺省的内置函数如果不能用简单的方法实现时，会调用标准函数。如memset
 # 连接的时候加 -mthumb让连接器在连接的时候，一些标准函数使用 thumb标准库
 LFLAGS= -T ${LINKER_SCRIPTS} ${PORT} -nostartfiles -nostdlib # --specs=nosys.specs
@@ -50,6 +53,7 @@ ${DISA_LIST}:${HEX}
 
 clean:
 	rm -rf ${ELF} ${HEX} ${DISA_LIST} ${BIN}
+	rm ../src/*.o
 	find -name \*~ -or -name \*.o -exec rm \{} \;
 burn:${HEX}
 	${ST_FLASH} erase

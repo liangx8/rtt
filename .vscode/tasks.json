@@ -9,7 +9,7 @@
             "command": "make",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/src"
+                "cwd": "${workspaceFolder}/cortex_m3"
             },
             "group": {
                 "isDefault": true,
@@ -29,7 +29,7 @@
             "command": "make",
             "args": ["clean"],
             "options": {
-                "cwd": "${workspaceFolder}/src"
+                "cwd": "${workspaceFolder}/cortex_m3"
             },
             "presentation": {
                 "echo": true,
