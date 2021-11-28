@@ -27,5 +27,6 @@ void rtt_init(void);
 #define tyield() portSCB->ICSR= (1 << 28)
 #define myield() __asm volatile ("svc #100")
 
-
+#define MS(x)   (CPUCLK / 1000 * x)
+#define US(x)   (CPUCLK / 1000000 * x)
 #endif

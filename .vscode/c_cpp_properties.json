@@ -24,7 +24,8 @@
             ],
             "defines": [
                 "STM32F051x8",
-                "CPUCLK=48000000"
+                "CPUCLK=48000000",
+                "__thumb__"
             ],
             "compilerPath": "/usr/bin/arm-none-eabi-gcc",
             "cStandard": "gnu99",

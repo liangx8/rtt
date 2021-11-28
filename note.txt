@@ -1,3 +1,14 @@
 分主进程和分进程。主进程用SVC_hander,分进程用PendSV_handler
 功能：只有主进程和1个分进程的功能实现
 bug fix: 不是bug,原因是延时太短了，LED频率太快，肉眼看不出来有闪烁
+
+cortex-m0:
+ldr,ldm,str,stm内存访问指令中涉及到的寄存器只限r0~r7
+
+push 可用寄存器 r0-r7,lr(r14)
+pop  可用寄存器 r0-r7,pc(R15)
+
+ldm 有2种后缀 ldmia,ldmfd
+    ldmia, ia是Incremented After each access,每次访问后增加索引寄存器
+    ldmfd, fd是full descending stack
+        我的理解是与pop是反方向。

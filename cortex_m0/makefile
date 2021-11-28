@@ -28,11 +28,13 @@ OBJS=${CSOURCE:.c=.o} ${ASOURCE:.S=.o}
 
 PORT=-mcpu=cortex-m0  -mthumb # -mlittle-endian
 CPUCLK=48000000
-INCLUDES=-I./cmsis/include -DSTM32F051x8
+INCLUDES=-I./cmsis/include
+INCLUDES+=-I./
+INCLUDES+=-I../src
 OPT=-O2
 
 CDEFS=-DCPUCLK=${CPUCLK}
-CDEFS+=-DSTM32F05X
+CDEFS+=-DSTM32F051x8
 CFLAGS= ${PORT} ${CDEFS} ${OPT} -Wall ${INCLUDES}
 
 

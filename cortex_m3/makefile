@@ -53,7 +53,7 @@ ${DISA_LIST}:${HEX}
 
 clean:
 	rm -rf ${ELF} ${HEX} ${DISA_LIST} ${BIN}
-	rm ../src/*.o
+	rm -f ../src/*.o
 	find -name \*~ -or -name \*.o -exec rm \{} \;
 burn:${HEX}
 	${ST_FLASH} erase
