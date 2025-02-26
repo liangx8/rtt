@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "at32f421.h": "c",
+        "at32f421_def.h": "c"
+    }
+}

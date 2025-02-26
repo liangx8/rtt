@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/f421/cmsis/cm4/device_support",
+                "${workspaceFolder}/f421/cmsis/cm4/core_support",
+                "${workspaceFolder}/f421/drivers/inc",
+                "${workspaceFolder}/inc"
+            ],
+            "defines": ["AT32F421K8U7"],
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-arm",
+            "compileCommands": "/usr/bin/arm-none-eabi-gcc"
+        }
+    ],
+    "version": 4
+}
