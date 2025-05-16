@@ -221,7 +221,6 @@ typedef enum IRQn
   */
 
 #include "core_cm4.h"
-#include "system_at32f421.h"
 #include <stdint.h>
 
 /** @addtogroup Exported_types
@@ -368,7 +367,7 @@ typedef enum {ERROR = 0, SUCCESS = !ERROR} error_status;
   */
 
 #include "at32f421_def.h"
-#include "at32f421_conf.h"
+//#include "at32f421_conf.h"
 
 #ifdef __cplusplus
 }
