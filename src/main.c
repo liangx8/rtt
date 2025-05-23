@@ -1,23 +1,27 @@
-#include <at32f421.h>
 #include <stdint.h>
+#include <at32f421_conf.h>
+#include <bitband.h>
+void adelay(uint32_t);
+void mcu_init(void);
 int main(void)
 {
-
-}
-
-static void abc(void)
-{
-    const struct devinfo{
-        uint32_t magic1;
-        uint32_t magic2;
-        const uint8_t deviceInfo[9];
-    } *dinfo=(struct devinfo *)(0x1000-32);
-    if (dinfo->magic1 !=0 ||
-        dinfo->magic2 !=2 ){
-        return;
+    mcu_init();
+    while(1){
+        adelay(0xfffff0);
+#if 0
+        //BITBAND(GPIOA->odt)->bit[8]=1;
+        GPIOA->scr=GPIO_PINS_8;
+        adelay(0xffff);
+        BITBAND(GPIOA->odt)->bit[8]=0;
+#else
+        GPIOA->scr=GPIO_PINS_8;
+        adelay(0xfffff0);
+        GPIOA->scr=GPIO_PINS_8<<16;
+#endif
     }
 }
 void _init(void)
 {
-    abc();
+
 }
+

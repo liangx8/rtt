@@ -30,8 +30,8 @@ OBJS=${addprefix ${OBJ_DIR}/,${notdir ${OBJS_WITHPATH}}}
 #PORT=-mcpu=cortex-m3  -mthumb # -mlittle-endian
 PORT=-mcpu=cortex-m4 -mthumb # -mlittle-endian
 CPUFREQ=-DCPUCLK=120000000
-#OPTC=-O2
-OPTC=-g
+OPTC=-O2
+#OPTC=-g
 
 CFLAGS= ${PORT} ${CPUFREQ} ${OPTC} -Wall
 CFLAGS+=-Werror
@@ -75,14 +75,12 @@ ${ELF}:${OBJS}
 define BUILD_c
 td = ${OBJ_DIR}/${shell basename -s .c ${shell basename ${1}}}.o
 $${td}:${1}
-	@echo "CC ${CFLAGS} -c $$< -o $$@"
-	@${CC} ${CFLAGS} -c $$< -o $$@
+	${CC} ${CFLAGS} -c $$< -o $$@
 endef
 define BUILD_asm
 td = ${OBJ_DIR}/${shell basename -s .s ${shell basename ${1}}}.o
 $${td}:${1}
-	@echo "CC ${CFLAGS} -c $$< -o $$@"
-	@${AS} ${PORT} $$< -o $$@
+	${AS} ${PORT} $$< -o $$@
 endef
 $(foreach prog,$(CSOURCE),$(eval $(call BUILD_c  ,$(prog))))
 $(foreach pro1,$(ASOURCE),$(eval $(call BUILD_asm,$(pro1))))
