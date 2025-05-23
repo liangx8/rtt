@@ -6,22 +6,22 @@ void mcu_init(void);
 int main(void)
 {
     mcu_init();
-    while(1){
-        adelay(0xfffff0);
-#if 0
-        //BITBAND(GPIOA->odt)->bit[8]=1;
-        GPIOA->scr=GPIO_PINS_8;
-        adelay(0xffff);
-        BITBAND(GPIOA->odt)->bit[8]=0;
-#else
-        GPIOA->scr=GPIO_PINS_8;
-        adelay(0xfffff0);
-        GPIOA->scr=GPIO_PINS_8<<16;
-#endif
+    while (1)
+    {
+        if (TMR6->ists & (1 << TMR_ISTS_OVFIF_pos))
+        {
+            TMR6->ists = 0;
+            if (GPIOA->idt & GPIO_PINS_9)
+            {
+                GPIOA->scr = GPIO_PINS_9 << 16;
+            }
+            else
+            {
+                GPIOA->scr = GPIO_PINS_9;
+            }
+        }
     }
 }
 void _init(void)
 {
-
 }
-

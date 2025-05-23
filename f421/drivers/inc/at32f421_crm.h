@@ -187,28 +187,17 @@ typedef enum
 } crm_ahb_div_type;
 
 /**
-  * @brief crm apb1 division
+  * @brief crm apb division
   */
 typedef enum
 {
-  CRM_APB1_DIV_1                         = 0x00, /*!< ahbclk div1 to apb1clk */
-  CRM_APB1_DIV_2                         = 0x04, /*!< ahbclk div2 to apb1clk */
-  CRM_APB1_DIV_4                         = 0x05, /*!< ahbclk div4 to apb1clk */
-  CRM_APB1_DIV_8                         = 0x06, /*!< ahbclk div8 to apb1clk */
-  CRM_APB1_DIV_16                        = 0x07  /*!< ahbclk div16 to apb1clk */
-} crm_apb1_div_type;
+  CRM_APB_DIV_1                         = 0x00, /*!< ahbclk div1 to apb1clk */
+  CRM_APB_DIV_2                         = 0x04, /*!< ahbclk div2 to apb1clk */
+  CRM_APB_DIV_4                         = 0x05, /*!< ahbclk div4 to apb1clk */
+  CRM_APB_DIV_8                         = 0x06, /*!< ahbclk div8 to apb1clk */
+  CRM_APB_DIV_16                        = 0x07  /*!< ahbclk div16 to apb1clk */
+} crm_apb_div_type;
 
-/**
-  * @brief crm apb2 division
-  */
-typedef enum
-{
-  CRM_APB2_DIV_1                         = 0x00, /*!< ahbclk div1 to apb2clk */
-  CRM_APB2_DIV_2                         = 0x04, /*!< ahbclk div2 to apb2clk */
-  CRM_APB2_DIV_4                         = 0x05, /*!< ahbclk div4 to apb2clk */
-  CRM_APB2_DIV_8                         = 0x06, /*!< ahbclk div8 to apb2clk */
-  CRM_APB2_DIV_16                        = 0x07  /*!< ahbclk div16 to apb2clk */
-} crm_apb2_div_type;
 
 /**
   * @brief crm adc division
@@ -387,11 +376,15 @@ typedef struct
 
 #define CRM_CFG_SCLKSEL_pos                0
 #define CRM_CFG_SCLKSTS_pos                2
+#define CRM_CFG_APB1DIV_pos                8
+#define CRM_CFG_APB2DIV_pos                11
 #define CRM_CFG_PLLRCS_pos                 16
 #define CRM_CFG_PLLHEXTDIV_pos             17
 #define CRM_CFG_PLLMULT_L_pos              18
 #define CRM_CFG_PLLMULT_H_pos              29
 
+#define CRM_CTRL_HEXTEN_pos                16
+#define CRM_CTRL_HEXTSTBL_pos              17
 #define CRM_CTRL_PLLEN_pos                 24
 #define CRM_CTRL_PLLSTBL_pos               25
 
