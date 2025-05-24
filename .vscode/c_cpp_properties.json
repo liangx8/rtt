@@ -8,7 +8,7 @@
                 "${workspaceFolder}/f421/drivers/inc",
                 "${workspaceFolder}/inc"
             ],
-            "defines": ["AT32F421C8T7","CPUCLK=72"],
+            "defines": ["AT32F421C8T7","CPUCLK=72","__thumb2__"],
             "cStandard": "c17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-arm",

@@ -4,6 +4,7 @@
 
 struct rttTCB tcb_list[TASK_NUM]; // 0x2000 0000
 struct rttTCB *ptr_tcb;           // 0x2000 0008
+uint32_t main_thread_count;
 
 stack_t * create_stack_frame(const void *func,void *arguments,stack_t *top)
 //stack_t * create_stack_frame(const void *func,void *arguments,stack_t *top)
@@ -36,4 +37,5 @@ void rtt_init(void)
     portSCB->SHP[7] =0xff; // priority of system handler SVCALL
     portSCB->SHP[10]=0xff; // priority of system handler PendingSV
     portSCB->SHP[11]=0xff; // priority of system handler SysTick
+    main_thread_count=0;
 }

@@ -1,9 +1,8 @@
 /*
 使用systick中断切换任务时，需要区分是从主
 */
-
-
 #include <stdint.h>
+#include "task.h"
 void PendSV_Handler(void) __attribute__((naked));
 void PendSV_Handler(void)
 {
@@ -84,5 +83,24 @@ void SVC_Handler(void) {
         "ldr        r0,=0xfffffffd\n"
         "bx r0\n"
     );
-
+}
+void test_pin(void);
+void SysTick_Handler(void)
+{
+    uint32_t val;
+    asm("mov %0,lr":"=r"(val));
+    
+    // 主线程使用msp,lr中的值为0xfffffff9
+    // 主线程使用psp,lr中的值为0xfffffffd
+    if(val == 0xfffffff9){
+        //使用msp
+        test_pin();
+        SVC_Handler();
+        return;
+    }
+    if(val== 0xfffffffd){
+        // tyield();
+        PendSV_Handler();
+        return;
+    }
 }
