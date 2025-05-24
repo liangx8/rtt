@@ -29,7 +29,7 @@ OBJS=${addprefix ${OBJ_DIR}/,${notdir ${OBJS_WITHPATH}}}
 
 #PORT=-mcpu=cortex-m3  -mthumb # -mlittle-endian
 PORT=-mcpu=cortex-m4 -mthumb # -mlittle-endian
-CPUFREQ=-DCPUCLK=120000000
+CPUFREQ=-DCPUCLK=120
 OPTC=-O2
 #OPTC=-g
 
@@ -41,7 +41,7 @@ CFLAGS+=-I${F421LIBS}/cmsis/cm4/device_support
 CFLAGS+=-I${F421LIBS}/cmsis/cm4/core_support
 CFLAGS+=-I${F421LIBS}/drivers/inc
 CFLAGS+=-Iinc
-CFLAGS+=-DAT32F421K8U7
+CFLAGS+=-DAT32F421C8T7
 
 
 # -nostdlib会导致一些编译错误。缺省的内置函数如果不能用简单的方法实现时，会调用标准函数。如memset

@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "at32f421.h": "c",
-        "at32f421_def.h": "c"
-    }
+        "at32f421_def.h": "c",
+        "task.h": "c",
+        "core_cm4.h": "c",
+        "stdint.h": "c",
+        "conf.h": "c"
+    },
+    "cortex-debug.openocdPath":"/home/cyc/at32/openocd/bin/openocd"
 }

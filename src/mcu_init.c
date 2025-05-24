@@ -1,7 +1,7 @@
-#include <at32f421_conf.h>
+#include "conf.h"
 #include <bitband.h>
-#define USE_HEXT8_DIV2
-//#define USE_HICK
+//#define USE_HEXT8_DIV2
+#define USE_HICK
 void crm_init(void)
 {
     FLASH->psr=FLASH_PSR_DEFAULT_VAL | FLASH_WAIT_CYCLE_3;
@@ -54,7 +54,11 @@ void crm_init(void)
 void gpio_init(void)
 {
     CRM->ahben=(1 << CRM_AHBEN_GPIOAEN_pos);
-    GPIOA->cfgr=GPIOA_CFGR_DEFAULT | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE8*2)) |(GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE9*2));
+    GPIOA->cfgr=GPIOA_CFGR_DEFAULT 
+        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE8*2))
+        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE9*2))
+        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE10*2))
+        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE11*2));
 }
 void timer_init(void)
 {
@@ -68,5 +72,5 @@ void mcu_init(void)
     gpio_init();
     timer_init();
 
-    SysTick_Config(120000);
+    SysTick_Config(MS(5));
 }
