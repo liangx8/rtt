@@ -17,14 +17,14 @@ OUTPUT_FORMAT=ihex
 LINKER_SCRIPTS=${F421LIBS}/cmsis/cm4/device_support/startup/gcc/linker/AT32F421x8_FLASH.ld
 
 CSOURCE=$(shell find -name \*.c -and -type f)
-ASOURCE=$(shell find -name \*.s -and -type f)
+ASOURCE=$(shell find -name \*.S -and -type f)
 SOURCE=${CSOURCE} ${ASOURCE}
 ELF=main.elf
 HEX=main.hex
 BIN=main.bin
 DISA_LIST=main.lst
 
-OBJS_WITHPATH=${CSOURCE:.c=.o} ${ASOURCE:.s=.o}
+OBJS_WITHPATH=${CSOURCE:.c=.o} ${ASOURCE:.S=.o}
 OBJS=${addprefix ${OBJ_DIR}/,${notdir ${OBJS_WITHPATH}}}
 
 #PORT=-mcpu=cortex-m3  -mthumb # -mlittle-endian
@@ -78,7 +78,7 @@ $${td}:${1}
 	${CC} ${CFLAGS} -c $$< -o $$@
 endef
 define BUILD_asm
-td = ${OBJ_DIR}/${shell basename -s .s ${shell basename ${1}}}.o
+td = ${OBJ_DIR}/${shell basename -s .S ${shell basename ${1}}}.o
 $${td}:${1}
 	${AS} ${PORT} $$< -o $$@
 endef

@@ -4,7 +4,6 @@
 
 struct rttTCB tcb_list[TASK_NUM]; // 0x2000 0000
 struct rttTCB *ptr_tcb;           // 0x2000 0008
-uint32_t main_thread_count;
 
 stack_t * create_stack_frame(const void *func,void *arguments,stack_t *top)
 //stack_t * create_stack_frame(const void *func,void *arguments,stack_t *top)
@@ -20,8 +19,6 @@ stack_t * create_stack_frame(const void *func,void *arguments,stack_t *top)
     top -= 8;                 /* r11,r10,r9,r8,r7,r6,r5,r4 */
     return top;
 }
-
-
 stack_t *switch_and_save_context(stack_t *top)
 {
     // 修改ptr_tcb的类型为rttTCB
@@ -32,10 +29,19 @@ stack_t *switch_and_save_context(stack_t *top)
     }
     return ptr_tcb->top;
 }
+void dec_tick(void)
+{
+
+    for(uint32_t ix=0;ix<TASK_NUM;ix++){
+        uint32_t cnt=tcb_list[ix].counter;
+        if(cnt){
+            tcb_list[ix].counter=cnt-1;
+        }
+    }
+}
 void rtt_init(void)
 {
     portSCB->SHP[7] =0xff; // priority of system handler SVCALL
     portSCB->SHP[10]=0xff; // priority of system handler PendingSV
     portSCB->SHP[11]=0xff; // priority of system handler SysTick
-    main_thread_count=0;
 }
