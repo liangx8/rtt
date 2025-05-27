@@ -3,12 +3,12 @@
 #include "../rtt/task.h"
 #define STACK_MIN_SIZE 16
 #define STACK_SIZE     24
+void adelay(uint32_t);
 void task2(uint32_t) __attribute__ ((naked));
 void task2(uint32_t x)
 {
     while(1){
-        for(uint32_t ix=0;ix<20000;ix++){
-        }
+        adelay(800);
         if(GPIOA->idt & GPIO_PINS_10){
             GPIOA->clr=GPIO_PINS_10;
         } else {
@@ -20,8 +20,7 @@ void task1(uint32_t) __attribute__ ((naked));
 void task1(uint32_t x)
 {
     while(1){
-        for(uint32_t ix=0;ix<20000;ix++){
-        }
+        adelay(1000);
         if(GPIOA->idt & GPIO_PINS_11){
             GPIOA->clr=GPIO_PINS_11;
         } else {

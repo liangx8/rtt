@@ -1,0 +1,29 @@
+.syntax unified
+@.cpu cortex-m4
+@.fpu softvfp
+@.thumb
+
+
+.func   SysTick_Handler
+.thumb_func
+.type SysTick_Handler, %function
+.align
+SysTick_Handler:
+@判断是使用那个堆栈寄存器
+    mov r0,lr
+    add r0,#7
+    bne 1f
+@lr值是0xfffffff9,中断前使用ＭＳＰ,环境保存只需直接push
+    push {r4-r11}
+    b   2f
+1:
+@ lr值是0xfffffffd,中断前使用ＰＳＰ,环境保存需要读出ＰＳＰ中的值
+    mrs r0,psp
+    stmdb r0!,{r4-r11}
+@ r0保存到当前的context中
+2:
+    bl      dec_tick
+    bx      lr
+.align
+.size SysTick_Handler, . - SysTick_Handler
+.endfunc

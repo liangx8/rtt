@@ -3,12 +3,13 @@
 */
 #include <stdint.h>
 #include "task.h"
+void test_pin(void);
+#if 0
 void PendSV_Handler(void) __attribute__((naked));
 void PendSV_Handler(void)
 {
-    
     __asm volatile ("cpsid i" ::: "memory");
-// 高与cortex-m3
+// cortex-m3以上的架构
 #if defined(__thumb2__)
     // data: psp => r0, 指定r0作为堆栈，因为在中断中。缺省使用MSP，
     __asm volatile ("mrs r0, psp" ::: );
@@ -49,9 +50,18 @@ void PendSV_Handler(void)
         "bx     r0\n"
     );
 }
+#else
+void PendSV_Handler(void)
+{
+    test_pin();
+}
+#endif
 
 void SVC_Handler(void) __attribute__((naked));
 void SVC_Handler(void) {
+
+
+
     __asm volatile ("cpsid i" ::: "memory");
     //在中断中，因此在使用msp
     __asm volatile ("mrs r0, psp" ::: );
@@ -84,23 +94,32 @@ void SVC_Handler(void) {
         "bx r0\n"
     );
 }
-void test_pin(void);
+void dec_tick(void);
+extern struct rttTCB tcb_list[];
 void SysTick_Handler(void)
 {
+#if 0
     uint32_t val;
     asm("mov %0,lr":"=r"(val));
-    
     // 主线程使用msp,lr中的值为0xfffffff9
     // 主线程使用psp,lr中的值为0xfffffffd
+    dec_tick();
     if(val == 0xfffffff9){
         //使用msp
-        test_pin();
+        // test_pin();
         SVC_Handler();
-        return;
-    }
-    if(val== 0xfffffffd){
         // tyield();
-        PendSV_Handler();
         return;
     }
+    PendSV_Handler();
+#else
+    for(uint32_t ix=0;ix<TASK_NUM;ix++){
+        uint32_t cnt=tcb_list[ix].counter;
+        if(cnt){
+            tcb_list[ix].counter=cnt-1;
+        } else {
+            tyield();
+        }
+    }
+#endif
 }
