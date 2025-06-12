@@ -555,11 +555,25 @@ typedef struct
 #define TMR_CTRL1_OWCDIR_pos             4
 #define TMR_CTRL1_TWCMSEL_pos            5
 #define TMR_CTRL1_PRBEN_pos              7
-#define TMR_CTRL1_CLKDIV_pos
+#define TMR_CTRL1_CLKDIV_pos             8
 #define TMR_IDEN_OVFIEN_pos              0
 #define TMR_IDEN_OVFDEN_pos              8
 #define TMR_SWEVT_OVFSWTR_pos            0
 #define TMR_ISTS_OVFIF_pos               0
+
+#define TMR_CM_CC0                       0x01
+#define TMR_CM_CC1                       0x02
+#define TMR_CM_COIEN                     0x04
+#define TMR_CM_COBEN                     0x08
+#define TMR_CM_COCTRL0                   0x10
+#define TMR_CM_COCTRL1                   0x20
+#define TMR_CM_COCTRL2                   0x40
+#define TMR_CM_COSEN                     0x80
+
+#define TMR_CCTRL_CEN                    0x01
+#define TMR_CCTRL_CP                     0x02
+#define TMR_CCTRL_CCEN                   0x04
+#define TMR_CCTRL_CCP                    0x08
 
 #if 0
 void tmr_reset(tmr_type *tmr_x);

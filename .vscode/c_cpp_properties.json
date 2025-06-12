@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Linux",
+            "name": "ARM-Linux",
             "includePath": [
                 "${workspaceFolder}/f421/cmsis/cm4/device_support",
                 "${workspaceFolder}/f421/cmsis/cm4/core_support",

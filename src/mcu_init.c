@@ -53,18 +53,55 @@ void crm_init(void)
 #define GPIOA_PULL_DEFAULT  0x24000000
 void gpio_init(void)
 {
-    CRM->ahben=(1 << CRM_AHBEN_GPIOAEN_pos);
-    GPIOA->cfgr=GPIOA_CFGR_DEFAULT 
-        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE8*2))
-        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE9*2))
-        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE10*2))
-        | (GPIO_MODE_OUTPUT << (GPIO_PINS_SOURCE11*2));
+    CRM->ahben=(1 << CRM_AHBEN_GPIOAEN_pos)|(1<< CRM_AHBEN_GPIOBEN_pos);
+#ifdef GPIOA_CFGR_VALUE
+    GPIOA->cfgr=GPIOA_CFGR_DEFAULT | GPIOA_CFGR_VALUE;
+#endif
+#ifdef GPIOA_OMODE_VALUE
+    GPIOA->omode=GPIOA_OMODE_VALUE
+#endif
+#ifdef GPIOA_ODRVR_VALUE
+    GPIOA->omode=GPIOA_ODRVR_DEFAULT | GPIOA_ODRVR_VALUE;
+#endif
+#ifdef GPIOA_PULL_VALUE
+    GPIOA->pull=GPIOA_PULL_DEFAULT | GPIOA_PULL_VALUE;
+#endif
+#ifdef GPIOB_CFGR_VALUE
+    GPIOB->cfgr=GPIOB_CFGR_VALUE;
+#endif
+#ifdef GPIOA_MUXH_VALUE
+    GPIOA->muxh=GPIOA_MUXH_VALUE;
+#endif
+#ifdef GPIOA_MUXL_VALUE
+    GPIOA->muxl=GPIOA_MUXL_VALUE;
+#endif
+#ifdef GPIOB_MUXH_VALUE
+    GPIOB->muxh=GPIOB_MUXH_VALUE;
+#endif
+#ifdef GPIOB_MUXL_VALUE
+    GPIOB->muxl=GPIOB_MUXL_VALUE;
+#endif
+
 }
+#define CHANNEL_SETTING (TMR_CM_COBEN | TMR_CM_COCTRL2 | TMR_CM_COCTRL1)
 void timer_init(void)
 {
     CRM->apb1en=1<<CRM_APB1EN_TMR6EN_pos;
+    CRM->apb2en=1<<CRM_APB2EN_TMR1EN_pos;
+/*****************************************************************************************
+ *  TIMER 6
+ *****************************************************************************************/
     TMR6->pr=0xffff;
-    TMR6->ctrl1=(1<<TMR_CTRL1_PRBEN_pos) | (1<TMR_CTRL1_OVFS_pos) | (1 << TMR_CTRL1_TMREN_pos);
+    TMR6->ctrl1=(1<<TMR_CTRL1_PRBEN_pos) | (1<<TMR_CTRL1_OVFS_pos) | (1 << TMR_CTRL1_TMREN_pos);
+/*****************************************************************************************
+ *  TIMER 1
+ *****************************************************************************************/
+    TMR1->pr=CPUCLK * 10000000 / PWM_FEQENCE;
+    TMR1->ctrl1=(1<<TMR_CTRL1_PRBEN_pos)
+                | (1 << TMR_CTRL1_TMREN_pos)
+                | (1 << TMR_CTRL1_OVFS_pos);
+    TMR1->cm1 = (CHANNEL_SETTING << 8) | CHANNEL_SETTING; // Channel 1 and 2 in PWM output mode
+    TMR1->cm2 = CHANNEL_SETTING;   // channel 3 in PWM output mode
 }
 void mcu_init(void)
 {
