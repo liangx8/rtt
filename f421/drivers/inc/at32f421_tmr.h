@@ -556,6 +556,9 @@ typedef struct
 #define TMR_CTRL1_TWCMSEL_pos            5
 #define TMR_CTRL1_PRBEN_pos              7
 #define TMR_CTRL1_CLKDIV_pos             8
+#define TMR_CTRL2_CBCTRL_pos             0
+
+
 #define TMR_IDEN_OVFIEN_pos              0
 #define TMR_IDEN_OVFDEN_pos              8
 #define TMR_SWEVT_OVFSWTR_pos            0
@@ -564,17 +567,30 @@ typedef struct
 #define TMR_CM_CC0                       0x01
 #define TMR_CM_CC1                       0x02
 #define TMR_CM_COIEN                     0x04
+// Channel output buffer
 #define TMR_CM_COBEN                     0x08
 #define TMR_CM_COCTRL0                   0x10
 #define TMR_CM_COCTRL1                   0x20
 #define TMR_CM_COCTRL2                   0x40
 #define TMR_CM_COSEN                     0x80
 
+#define TMR_CM_PWMA                      0b1100000
+#define TMR_CM_PWMB                      0b1110000
+#define TMR_CM_FORCE_L                   0b1000000
+#define TMR_CM_FORCE_H                   0b1010000
+
+
 #define TMR_CCTRL_CEN                    0x01
 #define TMR_CCTRL_CP                     0x02
 #define TMR_CCTRL_CCEN                   0x04
 #define TMR_CCTRL_CCP                    0x08
 
+#define TMR_SWEVT_HALLSWTR               0x20
+#define TMR_SWEVT_TRGSWTR                0x40
+
+#define TMR_BRK_OEN_pos                  15
+#define TMR_BRK_AOEN_pos                 14
+#define TMR_BRK_FCSOEN_pos               11
 #if 0
 void tmr_reset(tmr_type *tmr_x);
 void tmr_counter_enable(tmr_type *tmr_x, confirm_state new_state);

@@ -1,0 +1,7 @@
+FOC 相的时序
+AB = AP BN CN^
+AC = AP CN BN_
+BC = BP CN AN^
+BA = BP AN CN_
+CA = CP AN BN^
+CB = CP BN AN_

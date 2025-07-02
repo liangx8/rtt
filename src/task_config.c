@@ -11,11 +11,6 @@ void task2(uint32_t x)
         for(uint32_t ix=0;ix<1600;ix++){
             tyield();
         }
-        if(GPIOA->idt & GPIO_PINS_10){
-            GPIOA->clr=GPIO_PINS_10;
-        } else {
-            GPIOA->scr=GPIO_PINS_10;
-        }
     }
 }
 void task1(uint32_t) __attribute__ ((naked));
@@ -24,11 +19,6 @@ void task1(uint32_t x)
     while(1){
         for(uint32_t ix=0;ix<800;ix++){
             tyield();
-        }
-        if(GPIOA->idt & GPIO_PINS_11){
-            GPIOA->clr=GPIO_PINS_11;
-        } else {
-            GPIOA->scr=GPIO_PINS_11;
         }
     }
 }

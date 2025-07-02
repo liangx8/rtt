@@ -66,14 +66,16 @@ void gpio_init(void)
 #ifdef GPIOA_PULL_VALUE
     GPIOA->pull=GPIOA_PULL_DEFAULT | GPIOA_PULL_VALUE;
 #endif
-#ifdef GPIOB_CFGR_VALUE
-    GPIOB->cfgr=GPIOB_CFGR_VALUE;
-#endif
 #ifdef GPIOA_MUXH_VALUE
     GPIOA->muxh=GPIOA_MUXH_VALUE;
 #endif
 #ifdef GPIOA_MUXL_VALUE
     GPIOA->muxl=GPIOA_MUXL_VALUE;
+#endif
+GPIOA->odt=GPIOA_ODT_VALUE;
+
+#ifdef GPIOB_CFGR_VALUE
+    GPIOB->cfgr=GPIOB_CFGR_VALUE;
 #endif
 #ifdef GPIOB_MUXH_VALUE
     GPIOB->muxh=GPIOB_MUXH_VALUE;
@@ -81,9 +83,10 @@ void gpio_init(void)
 #ifdef GPIOB_MUXL_VALUE
     GPIOB->muxl=GPIOB_MUXL_VALUE;
 #endif
-
+GPIOB->odt=GPIOB_ODT_VALUE;
 }
-#define CHANNEL_SETTING (TMR_CM_COBEN | TMR_CM_COCTRL2 | TMR_CM_COCTRL1)
+// 127 => 1us,超过127将会加倍,当前0x40相当与500ns
+#define DEADTIME_GAP 0x40
 void timer_init(void)
 {
     CRM->apb1en=1<<CRM_APB1EN_TMR6EN_pos;
@@ -91,17 +94,19 @@ void timer_init(void)
 /*****************************************************************************************
  *  TIMER 6
  *****************************************************************************************/
-    TMR6->pr=0xffff;
+    TMR6->pr=CPUCLK * 1000000 / 180 / 50;
     TMR6->ctrl1=(1<<TMR_CTRL1_PRBEN_pos) | (1<<TMR_CTRL1_OVFS_pos) | (1 << TMR_CTRL1_TMREN_pos);
 /*****************************************************************************************
  *  TIMER 1
  *****************************************************************************************/
-    TMR1->pr=CPUCLK * 10000000 / PWM_FEQENCE;
+    TMR1->pr=PWM_TOP;
     TMR1->ctrl1=(1<<TMR_CTRL1_PRBEN_pos)
                 | (1 << TMR_CTRL1_TMREN_pos)
                 | (1 << TMR_CTRL1_OVFS_pos);
-    TMR1->cm1 = (CHANNEL_SETTING << 8) | CHANNEL_SETTING; // Channel 1 and 2 in PWM output mode
-    TMR1->cm2 = CHANNEL_SETTING;   // channel 3 in PWM output mode
+    TMR1->ctrl2=(1<<TMR_CTRL2_CBCTRL_pos);
+    TMR1->brk=(1<<TMR_BRK_AOEN_pos) | (1 << TMR_BRK_FCSOEN_pos) | DEADTIME_GAP;
+    // 关闭全部TIMER1的中断
+    TMR1->iden=0;
 }
 void mcu_init(void)
 {
