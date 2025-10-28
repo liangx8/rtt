@@ -17,6 +17,13 @@
 			"args": ["clean"],
 			"problemMatcher":[],
 			"detail": "清理"
+		},{
+			"type": "shell",
+			"label": "debug-build",
+			"command":"make",
+			"args": ["OPTC=-g"],
+			"problemMatcher":"$gcc",
+			"detail": "代码跟踪"
 		}
 	]
 }

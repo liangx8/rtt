@@ -30,8 +30,9 @@ OBJS=${addprefix ${OBJ_DIR}/,${notdir ${OBJS_WITHPATH}}}
 #PORT=-mcpu=cortex-m3  -mthumb # -mlittle-endian
 PORT=-mcpu=cortex-m4 -mthumb # -mlittle-endian
 CPUFREQ=-DCPUCLK=120
-OPTC=-O2
-#OPTC=-g
+ifeq (${OPTC}X,X)
+	OPTC=-O2
+endif
 
 CFLAGS= ${PORT} ${CPUFREQ} ${OPTC} -Wall
 CFLAGS+=-Werror

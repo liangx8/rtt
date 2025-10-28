@@ -5,6 +5,7 @@
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
         {
             "name": "cortex-debug",
             "type": "cortex-debug",
@@ -17,6 +18,7 @@
                 "${workspaceFolder}/openocd/atlink.cfg",
                 "${workspaceFolder}/openocd/at32f421xx.cfg"
             ],
+//            "openOCDLaunchCommands": ["adapter speed 5000"],
             "gdbPath":"/usr/bin/arm-none-eabi-gdb",
             "showDevDebugOutput": "raw",
             "cwd":"${workspaceFolder}"

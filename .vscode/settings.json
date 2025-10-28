@@ -1,3 +1,3 @@
 {
-    "cortex-debug.openocdPath":"/home/cyc/at32/openocd/bin/openocd"
+    "cortex-debug.openocdPath":"/home/ram/at32/openocd/bin/openocd"
 }
