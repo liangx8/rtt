@@ -1,4 +1,4 @@
-obj/**
 *.elf
 *.hex
 *.lst
+**/*.o
