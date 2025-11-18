@@ -1,11 +1,11 @@
 {
     "configurations": [
         {
-            "name": "ARM-Linux",
+            "name": "cortex-Linux",
             "includePath": [
-                "${workspaceFolder}/f421/cmsis/cm4/device_support",
-                "${workspaceFolder}/f421/cmsis/cm4/core_support",
-                "${workspaceFolder}/f421/drivers/inc",
+                "${workspaceFolder}/mcu/f421/cmsis/cm4/device_support",
+                "${workspaceFolder}/mcu/f421/cmsis/cm4/core_support",
+                "${workspaceFolder}/mcu/f421/drivers/inc",
                 "${workspaceFolder}/inc"
             ],
             "defines": ["AT32F421C8T7","CPUCLK=120","__thumb2__"],
