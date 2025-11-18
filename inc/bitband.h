@@ -1,3 +1,7 @@
+/*
+at32f421 的bitband 地址　0x2000 0000~ 0x200f ffff以及0x4000 0000~0x400f ffff
+GPIO的全部设备都不能使用bitband
+*/
 #ifndef BITBAND_H_8E8HR8EWHUW8
 #define BITBAND_H_8E8HR8EWHUW8
 
