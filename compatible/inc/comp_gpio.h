@@ -16,4 +16,10 @@ typedef struct _comp_gpio_typedef
   __IO uint32_t AFRH;         /*!< GPIO alternate function high register,       Address offset: 0x24      */
   __IO uint32_t BRR;          /*!< GPIO bit reset register,                     Address offset: 0x28      */
 } COMP_GPIO_TypeDef;
+
+#define GPIO_MODER_MOD_INPUT  0x00
+#define GPIO_MODER_MOD_OUTPUT 0x01
+#define GPIO_MODER_MOD_AF     0x10
+#define GPIO_MODER_MOD_ANL    0x11
+
 #endif
