@@ -23,7 +23,7 @@ int main(void)
     {
         if (TMR6->ists & (1 << TMR_ISTS_OVFIF_pos)){
             TMR6->ists = 0;
-            if(dgr==179){
+            if(dgr==360){
                 dgr=0;
             } else {
                 dgr++;

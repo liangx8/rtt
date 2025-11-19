@@ -23,3 +23,5 @@ CH CH1  A8
 //                        A8             A9                  A10
 #define GPIOB_MUXL_VALUE (GPIO_MUX_2) | (GPIO_MUX_2 << 4)
 
+#define SIN_POWER 0.2f
+#define SIN_NUTRAL (unsigned)((PWM_TOP>>1) * SIN_POWER)

@@ -1,4 +1,4 @@
-MCUS=f421
+MCUS=${notdir $(wildcard mcu/*)}
 all:$(MCUS)
 
 

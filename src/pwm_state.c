@@ -143,12 +143,28 @@ void ana_transfer(uint32_t dgr)
 {
 
     uint16_t dgr1=dgr+120;
-    if(dgr1>=180)dgr1=dgr1-180;
+    if(dgr1>=360)dgr1=dgr1-360;
     uint16_t dgr2=dgr1+120;
-    if(dgr2>=180)dgr2=dgr2-180;
-    TMR1->c1dt=sin180[dgr];
-    TMR1->c2dt=sin180[dgr1];
-    TMR1->c3dt=sin180[dgr2];
+    if(dgr2>=360)dgr2=dgr2-360;
+    uint16_t duty;
+    if(dgr<180){
+        duty=SIN_NUTRAL+sin180[dgr];
+    } else {
+        duty=SIN_NUTRAL-sin180[dgr-180];
+    }
+    TMR1->c1dt=duty;
+    if(dgr1<180){
+        duty=SIN_NUTRAL+sin180[dgr1];
+    } else {
+        duty=SIN_NUTRAL-sin180[dgr1-180];
+    }
+    TMR1->c2dt=duty;
+    if(dgr2<180){
+        duty=SIN_NUTRAL+sin180[dgr2];
+    } else {
+        duty=SIN_NUTRAL-sin180[dgr2-180];
+    }
+    TMR1->c3dt=duty;
 }
 
 uint32_t pwm_duty(uint32_t duty)

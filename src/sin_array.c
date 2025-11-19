@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include "esc_test.h"
-#define SINE_DUTY(fv) (uint16_t)((PWM_TOP * (fv))*.4)
+#define SINE_DUTY(fv) (uint16_t)(((PWM_TOP>>1) * (fv))*SIN_POWER)
+
 const uint16_t sin180[]={
 SINE_DUTY(0.0000f),SINE_DUTY(0.0175f),SINE_DUTY(0.0349f),
 SINE_DUTY(0.0523f),SINE_DUTY(0.0698f),SINE_DUTY(0.0872f),
