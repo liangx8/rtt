@@ -2,7 +2,7 @@
 #define  COMP_TMR_H_KDDUE889ER
 #include <stdint.h>
 #include "comp_io.h"
-typedef struct
+typedef struct _comp_tim_typedef
 {
     __IO uint32_t CR1;          /*!< TIM control register 1,              Address offset: 0x00 */
     __IO uint32_t CR2;          /*!< TIM control register 2,              Address offset: 0x04 */
@@ -125,4 +125,16 @@ typedef struct
 #define TIM_EGR_BG_Pos            (7U)
 #define TIM_EGR_BG_Msk            (0x1UL << TIM_EGR_BG_Pos)                     /*!< 0x00000080 */
 #define TIM_EGR_BG                TIM_EGR_BG_Msk                               /*!<Break Generation */
+
+#define TIM_CCMR_CCS_pos          0
+#define TIM_CCMR_OCFE_pos         2
+#define TIM_CCMR_OCPE_pos         3
+#define TIM_CCMR_OCM_pos          4
+#define TIM_CCMR_OCCE_pos         7
+
+#define TIM_CCMR_CCS_OUTPUT       0
+#define TIM_CCMR_OCM_INACT        0b1000000
+#define TIM_CCMR_OCM_ACT          0b1010000
+#define TIM_CCMR_OCM_PWM1         0b1100000
+#define TIM_CCMR_OCM_PWM2         0b1110000
 #endif
