@@ -8,7 +8,7 @@ AS=${ARCH}as
 OBJCOPY=${ARCH}objcopy
 OBJDUMP=${ARCH}objdump
 SIZE=${ARCH}size
-
+AWK=gawk
 ST_FLASH=st-flash
 OUTPUT_FORMAT=ihex
 ELF      =${OBJ_DIR}/${TARGET}.elf
@@ -21,19 +21,22 @@ endif
 CFLAGS:=-Iinc
 #CFLAGS+=-Wundef -Wl,--gc-sections
 #CFLAGS+=-Wextra -specs=nano.specs -MMD -MP
-
 SOURCE:=$(wildcard src/*.[cS])
 SOURCE+=$(wildcard rtt/*.[cS])
 
 include mcu/$(TARGET)/mcu.mk
-
-CFLAGS+= ${PORT} ${CPUFREQ} ${OPTC} -Wall
+#MCU_TYPE=$(shell echo $(TARGET) | tr  '[:lower:]' '[:upper:]')
+MCU_TYPE=$(shell echo $(TARGET) | ${AWK} '{print toupper($$0)}')
+CFLAGS+=${PORT}
+CFLAGS+=${CPUFREQ}
+CFLAGS+=${OPTC}
+CFLAGS+=-Wall
 CFLAGS+=-Werror
-
+CFLAGS+=-D${MCU_TYPE}=1
 
 # -nostdlib会导致一些编译错误。缺省的内置函数如果不能用简单的方法实现时，会调用标准函数。如memset
 # 连接的时候加 -mthumb让连接器在连接的时候，一些标准函数使用 thumb标准库
-LFLAGS=-T ${LINKER_SCRIPTS}
+LFLAGS=-T${LINKER_SCRIPTS}
 LFLAGS+=${PORT}
 LFLAGS+=-nostartfiles
 LFLAGS+=-nostdlib
@@ -41,10 +44,12 @@ LFLAGS+=--specs=nosys.specs
 LFLAGS+=-Wl,--print-memory-usage
 LFLAGS+=-lnosys
 
-
+COMPILEARGS_TMP=cargs.tmp
 #把.c .S后缀改成.o
 OBJS=${addsuffix .o,$(basename ${SOURCE})}
 
+$(file >${COMPILEARGS_TMP})
+$(foreach xx, ${CFLAGS},$(file >>${COMPILEARGS_TMP},${xx}))
 
 all:${HEX} ${BIN} ${DISA_LIST}
 #	@echo ${CSOURCE}
@@ -55,12 +60,18 @@ ${BIN}:${ELF}
 	${OBJCOPY} -O binary $< $@
 ${HEX}:${ELF}
 	${OBJCOPY} -O ${OUTPUT_FORMAT} $< $@
-
+LINKARGS_TMP=largs.tmp
 ${ELF}:${OBJS}
+	@cat ${COMPILEARGS_TMP}
+	@rm ${COMPILEARGS_TMP}
+	$(file >$(LINKARGS_TMP))
+	$(foreach obj,$^,$(file >>$(LINKARGS_TMP),${obj}))
+	$(foreach obj,${LFLAGS},$(file >>$(LINKARGS_TMP),${obj}))
 	@mkdir -p ${OBJ_DIR}
-	${CC} -o $@ ${LFLAGS} ${OBJS}
+	${CC} @$(LINKARGS_TMP) -o $@
 	${SIZE} $@
-
+	@rm $(LINKARGS_TMP)
+	
 
 
 
@@ -73,7 +84,7 @@ ${ELF}:${OBJS}
 #
 ######################################################################
 .c.o:
-	$(CC) ${CFLAGS} -o $@ -c $<
+	$(CC) @${COMPILEARGS_TMP} -o $@ -c $<
 .S.o:
 	${AS} ${PORT} -g $< -o $@
 disa:${DISA_LIST}

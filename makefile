@@ -4,7 +4,8 @@ all:$(MCUS)
 
 define CREATE_BUILD_TARGET
 $1:
-	$(MAKE) -f target.mk TARGET=$1
+	@echo building target "$1"
+	@$(MAKE) -f target.mk TARGET=$1
 endef
 $(foreach TGT,$(MCUS),$(eval $(call CREATE_BUILD_TARGET,$(TGT))))
 

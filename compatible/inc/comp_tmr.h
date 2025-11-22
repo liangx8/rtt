@@ -137,4 +137,9 @@ typedef struct _comp_tim_typedef
 #define TIM_CCMR_OCM_ACT          0b1010000
 #define TIM_CCMR_OCM_PWM1         0b1100000
 #define TIM_CCMR_OCM_PWM2         0b1110000
+
+#define TIM_CCER_CCNP             0b1000
+#define TIM_CCER_CCNE             0b0100
+#define TIM_CCER_CCP              0b0010
+#define TIM_CCER_CCE              0b0001
 #endif
