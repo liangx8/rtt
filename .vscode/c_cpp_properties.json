@@ -9,7 +9,7 @@
                 "${workspaceFolder}/compatible/inc",
                 "${workspaceFolder}/inc"
             ],
-            "defines": ["AT32F421C8T7","CPUCLK=120","F421=1","__thumb2__"],
+            "defines": ["AT32F421C8T7","CPUCLK=120","F421=1","__thumb2__","USE_COMP_TIMER=1"],
             "cStandard": "c17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-arm",

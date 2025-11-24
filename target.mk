@@ -21,8 +21,10 @@ endif
 CFLAGS:=-Iinc
 #CFLAGS+=-Wundef -Wl,--gc-sections
 #CFLAGS+=-Wextra -specs=nano.specs -MMD -MP
-SOURCE:=$(wildcard src/*.[cS])
-SOURCE+=$(wildcard rtt/*.[cS])
+#SOURCE:=$(wildcard src/*.[cS])
+#SOURCE+=$(wildcard rtt/*.[cS])
+CSOURCE:=$(wildcard src/*.c) $(wildcard rtt/*.c)
+ASOURCE:=$(wildcard src/*.S) $(wildcard rtt/*.S)
 
 include mcu/$(TARGET)/mcu.mk
 #MCU_TYPE=$(shell echo $(TARGET) | tr  '[:lower:]' '[:upper:]')
@@ -46,8 +48,8 @@ LFLAGS+=-lnosys
 
 COMPILEARGS_TMP=cargs.tmp
 #把.c .S后缀改成.o
-OBJS=${addsuffix .o,$(basename ${SOURCE})}
-
+#OBJS=${addsuffix .o,$(basename ${SOURCE})}
+OBJS=${CSOURCE:.c=.o} ${ASOURCE:.S=.o}
 $(file >${COMPILEARGS_TMP})
 $(foreach xx, ${CFLAGS},$(file >>${COMPILEARGS_TMP},${xx}))
 

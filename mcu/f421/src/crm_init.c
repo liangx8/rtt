@@ -1,5 +1,4 @@
 #include "conf.h"
-#ifdef F421
 void crm_init(void)
 {
 #ifdef CRM_APB1RST_VALUE
@@ -21,4 +20,3 @@ void crm_init(void)
     CRM->ahben=CRM_AHBEN_VALUE;
 #endif
 }
-#endif
