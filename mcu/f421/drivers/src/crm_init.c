@@ -1,12 +1,6 @@
-#include "conf.h"
-#ifdef 
+// 用户定义mcu/src/mcu_conf.h
+#include "mcu_conf.h"
 
-#ifdef TMR1_CLK_EN
-#define CRM_APB2EN_11 (1 << 11)
-#else
-#define CRM_APB2EN_11 0
-#endif
-#define CRM_APB2EN_VALUE CRM_APB2EN_0 | CRM_APB2EN_9
 void crm_init(void)
 {
 #ifdef CRM_APB1RST_VALUE

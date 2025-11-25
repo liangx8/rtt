@@ -373,59 +373,412 @@ typedef struct
 } crm_type;
 
 
+#ifdef CLK_SCFGCMPRST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_0                   (1<<0)
+#else
+#define CRM_APB2RST_0                   0
+#endif
+#ifdef CLK_EXINTRST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_1                   (1<<1)
+#else
+#define CRM_APB2RST_1                   0
+#endif
+#ifdef CLK_ADCRST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_9                   (1<<9)
+#else
+#define CRM_APB2RST_9                   0
+#endif
+#ifdef CLK_TMR1RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_11                  (1<<11)
+#else
+#define CRM_APB2RST_11                  0
+#endif
+#ifdef CLK_SPI1RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_12                  (1<<12)
+#else
+#define CRM_APB2RST_12                  0
+#endif
+#ifdef CLK_USART1RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_14                  (1<<14)
+#else
+#define CRM_APB2RST_14                  0
+#endif
+#ifdef CLK_TMR15RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_16                  (1<<16)
+#else
+#define CRM_APB2RST_16                  0
+#endif
+#ifdef CLK_TMR16RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_17                  (1<<17)
+#else
+#define CRM_APB2RST_17                  0
+#endif
+#ifdef CLK_TMR17RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2RST_18                  (1<<18)
+#else
+#define CRM_APB2RST_18                  0
+#endif
+#ifdef _VALUABLE
+#define CRM_APB2RST_VALUE ( CRM_APB2RST_0 |\
+ CRM_APB2RST_1 |\
+ CRM_APB2RST_9 |\
+ CRM_APB2RST_11 |\
+ CRM_APB2RST_12 |\
+ CRM_APB2RST_14 |\
+ CRM_APB2RST_16 |\
+ CRM_APB2RST_17 |\
+ CRM_APB2RST_18)
+#undef _VALUABLE
+#endif
 
-#define CRM_CFG_SCLKSEL_pos                0
-#define CRM_CFG_SCLKSTS_pos                2
-#define CRM_CFG_APB1DIV_pos                8
-#define CRM_CFG_APB2DIV_pos                11
-#define CRM_CFG_PLLRCS_pos                 16
-#define CRM_CFG_PLLHEXTDIV_pos             17
-#define CRM_CFG_PLLMULT_L_pos              18
-#define CRM_CFG_PLLMULT_H_pos              29
+#ifdef CLK_TMR3RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_1                   (1<<1)
+#else
+#define CRM_APB1RST_1                   0
+#endif
+#ifdef CLK_TMR6RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_4                   (1<<4)
+#else
+#define CRM_APB1RST_4                   0
+#endif
+#ifdef CLK_TMR14RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_8                   (1<<8)
+#else
+#define CRM_APB1RST_8                   0
+#endif
+#ifdef CLK_WWDTRST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_11                  (1<<11)
+#else
+#define CRM_APB1RST_11                  0
+#endif
+#ifdef CLK_SPI2RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_14                  (1<<14)
+#else
+#define CRM_APB1RST_14                  0
+#endif
+#ifdef CLK_USART2RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_17                  (1<<17)
+#else
+#define CRM_APB1RST_17                  0
+#endif
+#ifdef CLK_I2C1RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_21                  (1<<21)
+#else
+#define CRM_APB1RST_21                  0
+#endif
+#ifdef CLK_I2C2RST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_22                  (1<<22)
+#else
+#define CRM_APB1RST_22                  0
+#endif
+#ifdef CLK_PWCRST
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1RST_28                  (1<<28)
+#else
+#define CRM_APB1RST_28                  0
+#endif
+#ifdef _VALUABLE
+#define CRM_APB1RST_VALUE ( CRM_APB1RST_1 |\
+ CRM_APB1RST_4 |\
+ CRM_APB1RST_8 |\
+ CRM_APB1RST_11 |\
+ CRM_APB1RST_14 |\
+ CRM_APB1RST_17 |\
+ CRM_APB1RST_21 |\
+ CRM_APB1RST_22 |\
+ CRM_APB1RST_28)
+#undef _VALUABLE
+#endif
 
-#define CRM_CTRL_HEXTEN_pos                16
-#define CRM_CTRL_HEXTSTBL_pos              17
-#define CRM_CTRL_PLLEN_pos                 24
-#define CRM_CTRL_PLLSTBL_pos               25
+#ifdef CLK_DAM1EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_0                     (1<<0)
+#else
+#define CRM_AHBEN_0                     0
+#endif
+#ifdef CLK_SRAMEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_2                     (1<<2)
+#else
+#define CRM_AHBEN_2                     0
+#endif
+#ifdef CLK_FLASHEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_4                     (1<<4)
+#else
+#define CRM_AHBEN_4                     0
+#endif
+#ifdef CLK_CRCEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_6                     (1<<6)
+#else
+#define CRM_AHBEN_6                     0
+#endif
+#ifdef CLK_GPIOAEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_17                    (1<<17)
+#else
+#define CRM_AHBEN_17                    0
+#endif
+#ifdef CLK_GPIOBEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_18                    (1<<18)
+#else
+#define CRM_AHBEN_18                    0
+#endif
+#ifdef CLK_GPIOCEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_19                    (1<<19)
+#else
+#define CRM_AHBEN_19                    0
+#endif
+#ifdef CLK_GPIOFEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_AHBEN_22                    (1<<22)
+#else
+#define CRM_AHBEN_22                    0
+#endif
+#ifdef _VALUABLE
+#define CRM_AHBEN_VALUE ( CRM_AHBEN_0 |\
+ CRM_AHBEN_2 |\
+ CRM_AHBEN_4 |\
+ CRM_AHBEN_6 |\
+ CRM_AHBEN_17 |\
+ CRM_AHBEN_18 |\
+ CRM_AHBEN_19 |\
+ CRM_AHBEN_22)
+#undef _VALUABLE
+#endif
 
-#define CRM_PLL_PLLCFGEN_pos               31
+#ifdef CLK_SCFGCMPEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_0                    (1<<0)
+#else
+#define CRM_APB2EN_0                    0
+#endif
+#ifdef CLK_ADC1EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_9                    (1<<9)
+#else
+#define CRM_APB2EN_9                    0
+#endif
+#ifdef CLK_TMR1EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_11                   (1<<11)
+#else
+#define CRM_APB2EN_11                   0
+#endif
+#ifdef CLK_SPI1EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_12                   (1<<12)
+#else
+#define CRM_APB2EN_12                   0
+#endif
+#ifdef CLK_USART1EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_14                   (1<<14)
+#else
+#define CRM_APB2EN_14                   0
+#endif
+#ifdef CLK_TMR15EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_16                   (1<<16)
+#else
+#define CRM_APB2EN_16                   0
+#endif
+#ifdef CLK_TMR16EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_17                   (1<<17)
+#else
+#define CRM_APB2EN_17                   0
+#endif
+#ifdef CLK_TMR17EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB2EN_18                   (1<<18)
+#else
+#define CRM_APB2EN_18                   0
+#endif
+#ifdef _VALUABLE
+#define CRM_APB2EN_VALUE ( CRM_APB2EN_0 |\
+ CRM_APB2EN_9 |\
+ CRM_APB2EN_11 |\
+ CRM_APB2EN_12 |\
+ CRM_APB2EN_14 |\
+ CRM_APB2EN_16 |\
+ CRM_APB2EN_17 |\
+ CRM_APB2EN_18)
+#undef _VALUABLE
+#endif
 
-#define CRM_APB1EN_TMR3EN_pos              1
-#define CRM_APB1EN_TMR6EN_pos              4
-#define CRM_APB1EN_TMR14EN_pos             8
-#define CRM_APB1EN_WWDTEN_pos              11
-#define CRM_APB1EN_SPI2EN_pos              14
-#define CRM_APB1EN_USART2EN_pos            17
-#define CRM_APB1EN_I2C1EN_pos              21
-#define CRM_APB1EN_I2C2EN_pos              22
-#define CRM_APB1EN_PWCEN_pos               28
-
-#define CRM_APB2EN_SCFGCMPEN_pos           0
-#define CRM_APB2EN_ADC1EN_pos              9
-#define CRM_APB2EN_TMR1EN_pos              11
-#define CRM_APB2EN_SPI1EN_pos              12
-#define CRM_APB2EN_USART1EN_pos            14
-#define CRM_APB2EN_TMR15EN_pos             16
-#define CRM_APB2EN_TMR16EN_pos             17
-#define CRM_APB2EN_TMR17EN_pos             18
-
-#define CRM_AHBEN_DMA1EN_pos               0
-#define CRM_AHBEN_SRAMENEN_pos             2
-#define CRM_AHBEN_FLASHEN_pos              4
-#define CRM_AHBEN_CRCEN_pos                6
-#define CRM_AHBEN_GPIOAEN_pos              17
-#define CRM_AHBEN_GPIOBEN_pos              18
-#define CRM_AHBEN_GPIOCEN_pos              19
-#define CRM_AHBEN_GPIOFEN_pos              22
-
-
-
-
-
-
-
-
-
+#ifdef CLK_TMR3EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_1                    (1<<1)
+#else
+#define CRM_APB1EN_1                    0
+#endif
+#ifdef CLK_TMR6EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_4                    (1<<4)
+#else
+#define CRM_APB1EN_4                    0
+#endif
+#ifdef CLK_TMR14EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_8                    (1<<8)
+#else
+#define CRM_APB1EN_8                    0
+#endif
+#ifdef CLK_WWDTEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_11                   (1<<11)
+#else
+#define CRM_APB1EN_11                   0
+#endif
+#ifdef CLK_SPI2EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_14                   (1<<14)
+#else
+#define CRM_APB1EN_14                   0
+#endif
+#ifdef CLK_USART2EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_17                   (1<<17)
+#else
+#define CRM_APB1EN_17                   0
+#endif
+#ifdef CLK_I2C1EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_21                   (1<<21)
+#else
+#define CRM_APB1EN_21                   0
+#endif
+#ifdef CLK_I2C2EN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_22                   (1<<22)
+#else
+#define CRM_APB1EN_22                   0
+#endif
+#ifdef CLK_PWCEN
+#ifndef _VALUABLE
+#define _VALUABLE 1
+#endif
+#define CRM_APB1EN_28                   (1<<28)
+#else
+#define CRM_APB1EN_28                   0
+#endif
+#ifdef _VALUABLE
+#define CRM_APB1EN_VALUE ( CRM_APB1EN_1 |\
+ CRM_APB1EN_4 |\
+ CRM_APB1EN_8 |\
+ CRM_APB1EN_11 |\
+ CRM_APB1EN_14 |\
+ CRM_APB1EN_17 |\
+ CRM_APB1EN_21 |\
+ CRM_APB1EN_22 |\
+ CRM_APB1EN_28)
+#undef _VALUABLE
+#endif
 // use it when target fequence higher than 108Mhz
 #define CRM_MISC2_AUTO_STEP_EN_ON          0b110000
 

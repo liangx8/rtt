@@ -53,7 +53,6 @@ void crm_init(void)
 #define GPIOA_PULL_DEFAULT  0x24000000
 void gpio_init(void)
 {
-    CRM->ahben=(1 << CRM_AHBEN_GPIOAEN_pos)|(1<< CRM_AHBEN_GPIOBEN_pos);
 #ifdef GPIOA_CFGR_VALUE
     GPIOA->cfgr=GPIOA_CFGR_DEFAULT | GPIOA_CFGR_VALUE;
 #endif
@@ -89,8 +88,6 @@ GPIOB->odt=GPIOB_ODT_VALUE;
 #define DEADTIME_GAP 0x40
 void timer_init(void)
 {
-    CRM->apb1en=1<<CRM_APB1EN_TMR6EN_pos;
-    CRM->apb2en=1<<CRM_APB2EN_TMR1EN_pos;
 /*****************************************************************************************
  *  TIMER 6
  *****************************************************************************************/

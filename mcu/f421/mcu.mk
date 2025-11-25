@@ -7,6 +7,9 @@ CPUFREQ=-DCPUCLK=120
 CFLAGS+=-I${PARENT}/cmsis/cm4/device_support
 CFLAGS+=-I${PARENT}/cmsis/cm4/core_support
 CFLAGS+=-I${PARENT}/drivers/inc
+CFLAGS+=-I${PARENT}/inc
+
 CFLAGS+=-DAT32F421C8T7
 DIS_ARCH:=cortex-m4
+CSOURCE+=${wildcard src/*.c} ${wildcard drivers/src/*.c}
 ASOURCE+=${PARENT}/cmsis/cm4/device_support/startup/gcc/startup_at32f421.S
